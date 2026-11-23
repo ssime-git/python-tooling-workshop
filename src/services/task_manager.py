@@ -1,7 +1,6 @@
 """Task manager service for managing tasks."""
 
 from datetime import datetime
-from typing import List, Optional
 
 from src.models.task import Task, TaskStatus
 
@@ -16,7 +15,7 @@ class TaskManager:
 
     def __init__(self) -> None:
         """Initialize the task manager with an empty task list."""
-        self._tasks: List[Task] = []
+        self._tasks: list[Task] = []
         self._next_id: int = 1
 
     def add_task(self, title: str, description: str) -> Task:
@@ -41,7 +40,7 @@ class TaskManager:
         self._next_id += 1
         return task
 
-    def get_task(self, task_id: int) -> Optional[Task]:
+    def get_task(self, task_id: int) -> Task | None:
         """
         Retrieve a task by its ID.
 
@@ -56,7 +55,7 @@ class TaskManager:
                 return task
         return None
 
-    def list_tasks(self, status: Optional[TaskStatus] = None) -> List[Task]:
+    def list_tasks(self, status: TaskStatus | None = None) -> list[Task]:
         """
         List all tasks, optionally filtered by status.
 
@@ -88,7 +87,7 @@ class TaskManager:
         self._tasks.remove(task)
         return True
 
-    def update_task_status(self, task_id: int, status: TaskStatus) -> Optional[Task]:
+    def update_task_status(self, task_id: int, status: TaskStatus) -> Task | None:
         """
         Update the status of a task.
 
